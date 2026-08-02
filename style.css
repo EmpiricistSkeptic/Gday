@@ -1288,3 +1288,95 @@ h1{
     color:var(--red);
 
 }
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    body {
+
+        padding: 20px 16px;
+
+        overflow-x: hidden;
+
+    }
+
+    .card {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        padding: 32px 24px;
+
+        border-radius: 24px;
+
+    }
+
+    .date {
+
+        font-size: 0.9rem;
+
+    }
+
+    h1 {
+
+        font-size: 2.3rem;
+
+        line-height: 1.15;
+
+    }
+
+    .letter {
+
+        font-size: 1rem;
+
+        line-height: 1.8;
+
+    }
+
+    .heart-secret {
+
+        margin-top: 28px;
+
+        font-size: 2rem;
+
+    }
+
+    .secret-letter {
+
+        font-size: 1rem;
+
+    }
+
+    .card.open .secret-letter {
+
+        max-height: 45vh;
+
+        overflow-y: auto;
+
+    }
+
+    .secret-letter p {
+
+        font-size: 1rem;
+
+        line-height: 1.8;
+
+    }
+
+    .signature {
+
+        font-size: 1.1rem;
+
+    }
+
+    .signature span {
+
+        font-size: 2rem;
+
+    }
+
+}
