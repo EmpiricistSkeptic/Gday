@@ -5,10 +5,13 @@
 *,
 *::before,
 *::after{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
+
 
 :root{
 
@@ -30,6 +33,7 @@
 
 }
 
+
 html{
 
     font-size:16px;
@@ -37,6 +41,7 @@ html{
     scroll-behavior:smooth;
 
 }
+
 
 body{
 
@@ -53,6 +58,8 @@ body{
     font-family:"Cormorant Garamond",serif;
 
     position:relative;
+
+    -webkit-font-smoothing:antialiased;
 
 }
 
@@ -82,25 +89,24 @@ body{
 
         radial-gradient(
             circle at 0% 100%,
-            rgba(90,8,18,.24),
+            rgba(90,8,18,.20),
             transparent 46%
         ),
 
         radial-gradient(
             circle at 100% 100%,
-            rgba(120,10,20,.18),
+            rgba(120,10,20,.15),
             transparent 46%
         ),
 
         linear-gradient(
             180deg,
-
             #140608,
-
-            #070707 40%,
-
+            #070707 45%,
             #020202
         );
+
+    pointer-events:none;
 
 }
 
@@ -116,7 +122,7 @@ body{
 
     inset:-50%;
 
-    opacity:.035;
+    opacity:.025;
 
     mix-blend-mode:screen;
 
@@ -124,11 +130,14 @@ body{
 
         radial-gradient(circle,#ffffff 1px,transparent 1px);
 
-    background-size:4px 4px;
+    background-size:5px 5px;
 
-    animation:noiseMove 14s linear infinite;
+    animation:noiseMove 18s linear infinite;
+
+    pointer-events:none;
 
 }
+
 
 @keyframes noiseMove{
 
@@ -140,7 +149,7 @@ body{
 
     to{
 
-        transform:translate(180px,120px);
+        transform:translate(120px,80px);
 
     }
 
@@ -164,9 +173,12 @@ body{
 
     filter:blur(90px);
 
-    opacity:.15;
+    opacity:.12;
+
+    will-change:transform;
 
 }
+
 
 .fog-1{
 
@@ -176,9 +188,10 @@ body{
 
     left:-10%;
 
-    animation:fogOne 26s ease-in-out infinite alternate;
+    animation:fogOne 30s ease-in-out infinite alternate;
 
 }
+
 
 .fog-2{
 
@@ -188,9 +201,10 @@ body{
 
     bottom:-15%;
 
-    animation:fogTwo 32s ease-in-out infinite alternate;
+    animation:fogTwo 36s ease-in-out infinite alternate;
 
 }
+
 
 .fog-3{
 
@@ -200,22 +214,38 @@ body{
 
     top:45%;
 
-    opacity:.08;
+    opacity:.06;
 
-    animation:fogThree 40s ease-in-out infinite alternate;
+    animation:fogThree 45s ease-in-out infinite alternate;
 
 }
 
 
+/* Disable heavy motion on low-power devices */
+
+@media (prefers-reduced-motion: reduce){
+
+    .noise,
+    .fog{
+
+        animation:none;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   FOG ANIMATIONS
+========================================================== */
 
 @keyframes fogOne{
 
     from{
 
         transform:
-
-            translate(0,0)
-
+            translate3d(0,0,0)
             scale(1);
 
     }
@@ -223,9 +253,7 @@ body{
     to{
 
         transform:
-
-            translate(120px,-40px)
-
+            translate3d(120px,-40px,0)
             scale(1.18);
 
     }
@@ -239,9 +267,7 @@ body{
     from{
 
         transform:
-
-            translate(0,0)
-
+            translate3d(0,0,0)
             scale(1);
 
     }
@@ -249,9 +275,7 @@ body{
     to{
 
         transform:
-
-            translate(-140px,60px)
-
+            translate3d(-140px,60px,0)
             scale(1.22);
 
     }
@@ -265,9 +289,7 @@ body{
     from{
 
         transform:
-
             rotate(0deg)
-
             scale(1);
 
     }
@@ -275,9 +297,7 @@ body{
     to{
 
         transform:
-
             rotate(12deg)
-
             scale(1.35);
 
     }
@@ -301,14 +321,12 @@ body{
     background:
 
         radial-gradient(
-
             circle,
-
             transparent 48%,
-
             rgba(0,0,0,.72) 100%
-
         );
+
+    pointer-events:none;
 
 }
 
@@ -319,7 +337,6 @@ body{
 ========================================================== */
 
 #particles,
-
 #petals{
 
     position:absolute;
@@ -348,7 +365,7 @@ body{
 
     align-items:center;
 
-    padding:40px 20px;
+    padding:32px 16px;
 
 }
 
@@ -360,9 +377,9 @@ body{
 
     position:relative;
 
-    width:min(760px,92vw);
+    width:min(760px,100%);
 
-    padding:70px 60px;
+    padding:64px 56px;
 
     border-radius:28px;
 
@@ -371,6 +388,7 @@ body{
     text-align:center;
 
     background:
+
         linear-gradient(
             180deg,
             rgba(18,10,11,.92),
@@ -381,17 +399,18 @@ body{
 
     box-shadow:
 
-        0 35px 90px rgba(0,0,0,.55),
+        0 30px 80px rgba(0,0,0,.55),
 
-        0 0 45px rgba(214,40,57,.08),
+        0 0 40px rgba(214,40,57,.08),
 
         inset 0 1px rgba(255,255,255,.05);
 
     backdrop-filter:blur(10px);
 
-    animation:cardAppear 2s ease forwards;
+    animation:cardAppear 1.5s ease forwards;
 
 }
+
 
 
 /* ==========================================================
@@ -424,6 +443,8 @@ body{
             transparent 70%
         );
 
+    z-index:0;
+
 }
 
 
@@ -440,6 +461,38 @@ body{
     border:1px solid rgba(255,255,255,.035);
 
     pointer-events:none;
+
+    z-index:0;
+
+}
+
+
+/* Keep content above effects */
+
+.card > *{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .card{
+
+        width:100%;
+
+        padding:42px 24px;
+
+        border-radius:22px;
+
+    }
 
 }
 
@@ -459,7 +512,7 @@ body{
 
     font-size:.95rem;
 
-    letter-spacing:6px;
+    letter-spacing:5px;
 
     text-transform:uppercase;
 
@@ -479,9 +532,9 @@ h1{
 
     font-weight:400;
 
-    font-size:5.3rem;
+    font-size:5rem;
 
-    line-height:.95;
+    line-height:1;
 
     color:white;
 
@@ -489,7 +542,7 @@ h1{
 
         0 0 14px rgba(214,40,57,.25),
 
-        0 0 45px rgba(214,40,57,.18);
+        0 0 40px rgba(214,40,57,.16);
 
 }
 
@@ -501,11 +554,11 @@ h1{
 
 .divider{
 
-    width:160px;
+    width:150px;
 
     height:1px;
 
-    margin:38px auto;
+    margin:34px auto;
 
     background:
 
@@ -526,6 +579,42 @@ h1{
 
 
 /* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .date{
+
+        font-size:.8rem;
+
+        letter-spacing:4px;
+
+    }
+
+
+    h1{
+
+        font-size:3.2rem;
+
+        line-height:1.05;
+
+    }
+
+
+    .divider{
+
+        width:120px;
+
+        margin:28px auto;
+
+    }
+
+}
+
+
+
+/* ==========================================================
    LETTER
 ========================================================== */
 
@@ -535,9 +624,9 @@ h1{
 
     margin:auto;
 
-    font-size:1.55rem;
+    font-size:1.45rem;
 
-    line-height:1.85;
+    line-height:1.8;
 
     color:var(--text-soft);
 
@@ -559,25 +648,30 @@ h1{
 
     bottom:22px;
 
+    z-index:20;
+
     font-size:22px;
 
-    color:rgba(214,40,57,.22);
+    color:rgba(214,40,57,.65);
 
     cursor:pointer;
 
+    user-select:none;
+
     transition:
 
-        color .45s,
+        color .35s ease,
 
-        transform .45s,
+        transform .35s ease,
 
-        text-shadow .45s;
+        text-shadow .35s ease;
 
 }
 
+
 .card:hover .heart-secret{
 
-    color:rgba(214,40,57,.75);
+    color:rgba(214,40,57,.95);
 
     text-shadow:
 
@@ -587,9 +681,48 @@ h1{
 
 }
 
+
 .heart-secret:hover{
 
-    transform:scale(1.35);
+    transform:scale(1.25);
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .letter{
+
+        font-size:1.1rem;
+
+        line-height:1.75;
+
+    }
+
+
+    .heart-secret{
+
+        left:50%;
+
+        bottom:18px;
+
+        transform:translateX(-50%);
+
+        font-size:24px;
+
+    }
+
+
+    .heart-secret:hover{
+
+        transform:translateX(-50%) scale(1.2);
+
+    }
 
 }
 
@@ -607,9 +740,9 @@ h1{
 
         transform:
 
-            translateY(40px)
+            translate3d(0,30px,0)
 
-            scale(.97);
+            scale(.98);
 
     }
 
@@ -619,13 +752,15 @@ h1{
 
         transform:
 
-            translateY(0)
+            translate3d(0,0,0)
 
             scale(1);
 
     }
 
 }
+
+
 
 /* ==========================================================
    CINEMATIC ANIMATIONS
@@ -635,11 +770,15 @@ h1{
 
     animation:
 
-        cardAppear 2s ease forwards,
+        cardAppear 1.4s ease forwards,
 
-        breathing 7s ease-in-out infinite;
+        breathing 8s ease-in-out infinite;
+
+    will-change:transform, box-shadow;
 
 }
+
+
 
 @keyframes breathing{
 
@@ -647,29 +786,47 @@ h1{
 
         box-shadow:
 
-            0 30px 90px rgba(0,0,0,.55),
+            0 30px 80px rgba(0,0,0,.55),
 
             0 0 30px rgba(214,40,57,.05);
 
     }
+
 
     50%{
 
         box-shadow:
 
-            0 40px 110px rgba(0,0,0,.65),
+            0 35px 95px rgba(0,0,0,.6),
 
-            0 0 70px rgba(214,40,57,.14);
+            0 0 55px rgba(214,40,57,.12);
 
     }
+
 
     100%{
 
         box-shadow:
 
-            0 30px 90px rgba(0,0,0,.55),
+            0 30px 80px rgba(0,0,0,.55),
 
             0 0 30px rgba(214,40,57,.05);
+
+    }
+
+}
+
+
+
+/* Reduce heavy animations on mobile */
+
+@media (max-width:768px){
+
+    .card{
+
+        animation:
+
+            cardAppear .8s ease forwards;
 
     }
 
@@ -687,9 +844,10 @@ h1{
 
     animation:
 
-        fadeUp 1s ease .4s forwards;
+        fadeUp .8s ease .3s forwards;
 
 }
+
 
 h1{
 
@@ -697,21 +855,23 @@ h1{
 
     animation:
 
-        fadeUp 1.2s ease .9s forwards;
+        fadeUp 1s ease .6s forwards;
 
 }
+
 
 .divider{
 
     opacity:0;
 
-    transform:scaleX(.2);
+    transform:scaleX(.3);
 
     animation:
 
-        dividerAppear 1s ease 1.6s forwards;
+        dividerAppear .8s ease 1s forwards;
 
 }
+
 
 .letter{
 
@@ -719,11 +879,15 @@ h1{
 
     animation:
 
-        fadeUp 1.3s ease 2.1s forwards;
+        fadeUp 1s ease 1.3s forwards;
 
 }
 
 
+
+/* ==========================================================
+   ANIMATION HELPERS
+========================================================== */
 
 @keyframes fadeUp{
 
@@ -733,9 +897,10 @@ h1{
 
         transform:
 
-            translateY(18px);
+            translate3d(0,15px,0);
 
     }
+
 
     to{
 
@@ -743,7 +908,7 @@ h1{
 
         transform:
 
-            translateY(0);
+            translate3d(0,0,0);
 
     }
 
@@ -757,15 +922,33 @@ h1{
 
         opacity:0;
 
-        transform:scaleX(.2);
+        transform:scaleX(.3);
 
     }
+
 
     to{
 
         opacity:1;
 
         transform:scaleX(1);
+
+    }
+
+}
+
+
+
+/* Disable intro delays on small screens */
+
+@media (max-width:768px){
+
+    .date,
+    h1,
+    .divider,
+    .letter{
+
+        animation-duration:.7s;
 
     }
 
@@ -781,39 +964,36 @@ h1{
 
     animation:
 
-        lightSweep 9s linear infinite;
+        lightSweep 12s linear infinite;
 
 }
+
 
 @keyframes lightSweep{
 
     0%{
 
-        transform:
+        transform:translate3d(-20px,0,0);
 
-            translateX(-25px);
-
-        opacity:.45;
+        opacity:.35;
 
     }
+
 
     50%{
 
-        transform:
+        transform:translate3d(20px,0,0);
 
-            translateX(25px);
-
-        opacity:.9;
+        opacity:.7;
 
     }
 
+
     100%{
 
-        transform:
+        transform:translate3d(-20px,0,0);
 
-            translateX(-25px);
-
-        opacity:.45;
+        opacity:.35;
 
     }
 
@@ -822,304 +1002,94 @@ h1{
 
 
 /* ==========================================================
-   SECRET HEART
+   SECRET HEART POSITION
 ========================================================== */
 
 .heart-secret{
 
     position:absolute;
 
-    left:26px;
-
-    bottom:22px;
-
-    z-index:20;
-
-    font-size:22px;
-
-    color:rgba(214,40,57,.75);
-
-    cursor:pointer;
-
-    transition:
-
-        color .45s,
-
-        transform .45s,
-
-        text-shadow .45s;
-
-}
-
-
-
-.card:hover .heart-secret{
-
-    opacity:.9;
-
-}
-
-
-
-@keyframes heartBreath{
-
-    0%{
-
-        transform:scale(1);
-
-    }
-
-    50%{
-
-        transform:scale(1.18);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-    }
-
-}
-
-
-
-/* ==========================================================
-   MODAL
-========================================================== */
-
-.modal{
-
-    position:fixed;
-
-    inset:0;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:500;
-
-    transition:.5s;
-
-}
-
-
-
-.modal.hidden{
-
-    opacity:0;
-
-    visibility:hidden;
-
-    pointer-events:none;
-
-}
-
-
-
-.modal-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:rgba(0,0,0,.72);
-
-    backdrop-filter:blur(12px);
-
-}
-
-
-
-/* ==========================================================
-   LETTER PAPER
-========================================================== */
-
-.paper{
-
-    position:relative;
-
-    width:min(760px,92vw);
-
-    max-height:82vh;
-
-    overflow:auto;
-
-    padding:60px;
-
-    border-radius:28px;
-
-    background:
-
-        linear-gradient(
-
-            180deg,
-
-            rgba(24,14,15,.98),
-
-            rgba(12,8,8,.99)
-
-        );
-
-    border:1px solid rgba(214,40,57,.18);
-
-    box-shadow:
-
-        0 40px 100px rgba(0,0,0,.6),
-
-        0 0 60px rgba(214,40,57,.08);
-
-    animation:
-
-        paperAppear .65s ease;
-
-}
-
-
-
-@keyframes paperAppear{
-
-    from{
-
-        opacity:0;
-
-        transform:
-
-            scale(.95)
-
-            translateY(25px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-
-            scale(1)
-
-            translateY(0);
-
-    }
-
-}
-
-
-
-/* ==========================================================
-   MODAL TITLE
-========================================================== */
-
-.paper h2{
-
-    text-align:center;
-
-    font-family:"Great Vibes",cursive;
-
-    font-size:4rem;
-
-    font-weight:400;
-
-    margin-bottom:15px;
-
-    color:white;
-
-}
-
-
-
-.paper-content{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:24px;
-
-    margin-top:25px;
-
-}
-
-
-
-.paper-content p{
-
-    color:var(--text-soft);
-
-    font-size:1.45rem;
-
-    line-height:1.9;
-
-}
-
-
-
-/* ==========================================================
-   CLOSE
-========================================================== */
-
-.close{
-
-    position:absolute;
-
-    top:20px;
+    top:22px;
 
     right:24px;
 
-    border:none;
+    left:auto;
 
-    background:none;
+    bottom:auto;
 
-    color:white;
+    z-index:50;
+
+    font-size:26px;
+
+    color:rgba(214,40,57,.85);
 
     cursor:pointer;
 
-    font-size:2rem;
+    user-select:none;
 
-    transition:.35s;
+    animation:heartBreath 5s ease-in-out infinite;
+
+    transition:
+
+        color .35s ease,
+
+        transform .35s ease,
+
+        text-shadow .35s ease;
 
 }
 
 
+.heart-secret:hover{
 
-.close:hover{
+    color:#ff4d63;
 
-    transform:rotate(90deg);
+    transform:scale(1.25);
 
-    color:var(--red);
+    text-shadow:
+
+        0 0 12px rgba(214,40,57,.6),
+
+        0 0 25px rgba(214,40,57,.35);
 
 }
 
 
 
 /* ==========================================================
-   SCROLLBAR
+   MOBILE
 ========================================================== */
 
-.paper::-webkit-scrollbar{
+@media (max-width:768px){
 
-    width:8px;
+    .heart-secret{
+
+        top:18px;
+
+        right:18px;
+
+        left:auto;
+
+        bottom:auto;
+
+        font-size:24px;
+
+    }
+
+
+    .heart-secret:hover{
+
+        transform:scale(1.15);
+
+    }
 
 }
 
-.paper::-webkit-scrollbar-thumb{
 
-    background:rgba(214,40,57,.4);
 
-    border-radius:20px;
 
-}
 
-.paper::-webkit-scrollbar-track{
 
-    background:transparent;
-
-}
 
 /* ==========================================================
    ROSE PETAL
@@ -1133,41 +1103,30 @@ h1{
 
     top:0;
 
-    border-radius:
-
-        60% 40%
-
-        65% 35%
-
-        55% 45%
-
-        45% 55%;
+    border-radius:60% 40% 65% 35% / 55% 45% 55% 45%;
 
     background:
 
         radial-gradient(
-
             circle at 30% 30%,
-
             #ff7b8e,
-
             #d62839 45%,
-
             #85101e 100%
-
         );
 
     box-shadow:
 
         inset -2px -3px 4px rgba(70,0,0,.25),
 
-        0 0 10px rgba(214,40,57,.18);
+        0 0 8px rgba(214,40,57,.15);
 
     pointer-events:none;
 
     will-change:transform;
 
 }
+
+
 
 /* ==========================================================
    FIREFLY
@@ -1186,28 +1145,36 @@ h1{
     background:
 
         radial-gradient(
-
             circle,
-
-            rgba(255,255,255,.95),
-
-            rgba(214,40,57,.85) 45%,
-
-            rgba(214,40,57,0) 100%
-
+            rgba(255,255,255,.9),
+            rgba(214,40,57,.75) 45%,
+            transparent 100%
         );
 
     filter:blur(1px);
 
     box-shadow:
 
-        0 0 10px rgba(214,40,57,.55),
+        0 0 8px rgba(214,40,57,.45),
 
-        0 0 25px rgba(214,40,57,.25);
+        0 0 18px rgba(214,40,57,.2);
 
     pointer-events:none;
 
     will-change:transform;
+
+}
+
+
+/* Disable particles on very small screens for performance */
+
+@media (max-width:480px){
+
+    .firefly{
+
+        display:none;
+
+    }
 
 }
 
@@ -1225,26 +1192,31 @@ h1{
 
     transition:
 
-        max-height .9s ease,
+        max-height .6s ease,
 
-        opacity .8s ease,
+        opacity .5s ease,
 
-        margin-top .8s ease;
+        margin-top .5s ease;
 
 }
 
 
+
 .card.open .secret-letter{
 
-    max-height:60vh;
+    max-height:55vh;
 
     overflow-y:auto;
 
     opacity:1;
 
-    margin-top:45px;
+    margin-top:35px;
+
+    padding-right:6px;
 
 }
+
+
 
 .secret-divider{
 
@@ -1252,7 +1224,7 @@ h1{
 
     height:1px;
 
-    margin:0 auto 35px;
+    margin:0 auto 30px;
 
     background:
 
@@ -1270,29 +1242,35 @@ h1{
 
 }
 
+
+
 .secret-letter p{
 
-    font-size:1.45rem;
+    font-size:1.35rem;
 
-    line-height:1.9;
+    line-height:1.8;
 
     color:var(--text-soft);
 
-    margin-bottom:24px;
+    margin-bottom:22px;
 
 }
 
+
+
 .signature{
 
-    margin-top:50px;
+    margin-top:40px;
 
     text-align:right;
 
-    font-size:1.6rem;
+    font-size:1.4rem;
 
     color:white;
 
 }
+
+
 
 .signature span{
 
@@ -1302,9 +1280,48 @@ h1{
 
     font-family:"Great Vibes",cursive;
 
-    font-size:2.6rem;
+    font-size:2.4rem;
 
     color:var(--red);
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .card.open .secret-letter{
+
+        max-height:55vh;
+
+    }
+
+
+    .secret-letter p{
+
+        font-size:1.05rem;
+
+        line-height:1.7;
+
+    }
+
+
+    .signature{
+
+        font-size:1.1rem;
+
+    }
+
+
+    .signature span{
+
+        font-size:2rem;
+
+    }
 
 }
 
@@ -1312,9 +1329,9 @@ h1{
    MOBILE
 ========================================================== */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-    body {
+    body{
 
         overflow-x:hidden;
 
@@ -1322,83 +1339,120 @@ h1{
 
     }
 
-    .card {
 
-        width: 100%;
 
-        max-width: 100%;
+    .hero{
 
-        padding: 32px 24px;
+        min-height:100vh;
 
-        border-radius: 24px;
+        padding:24px 14px;
 
-    }
-
-    .date {
-
-        font-size: 0.9rem;
+        align-items:center;
 
     }
 
-    h1 {
 
-        font-size: 2.3rem;
 
-        line-height: 1.15;
+    .card{
 
-    }
+        width:100%;
 
-    .letter {
+        max-width:100%;
 
-        font-size: 1rem;
+        padding:36px 22px 70px;
 
-        line-height: 1.8;
+        border-radius:22px;
 
     }
 
-    .secret-letter {
 
-        font-size: 1rem;
 
-    }
+    .date{
 
-    .card.open .secret-letter {
+        font-size:.8rem;
 
-        max-height: 45vh;
-
-        overflow-y: auto;
+        letter-spacing:4px;
 
     }
 
-    .secret-letter p {
 
-        font-size: 1rem;
 
-        line-height: 1.8;
+    h1{
 
-    }
+        font-size:3rem;
 
-    .signature {
-
-        font-size: 1.1rem;
+        line-height:1.05;
 
     }
 
-    .signature span {
 
-        font-size: 2rem;
+
+    .letter{
+
+        font-size:1.05rem;
+
+        line-height:1.75;
 
     }
+
+
+
+    .secret-letter{
+
+        font-size:1rem;
+
+    }
+
+
+
+    .card.open .secret-letter{
+
+        max-height:50vh;
+
+        overflow-y:auto;
+
+    }
+
+
+
+    .secret-letter p{
+
+        font-size:1rem;
+
+        line-height:1.7;
+
+    }
+
+
+
+    .signature{
+
+        font-size:1rem;
+
+    }
+
+
+
+    .signature span{
+
+        font-size:2rem;
+
+    }
+
+
 
     .heart-secret{
 
-        left:50%;
+        z-index:50;
 
-        bottom:18px;
+        font-size:24px;
 
-        z-index:20;
+    }
 
-        transform:translateX(-50%);
+
+    .heart-secret:hover{
+
+        transform:scale(1.15);
 
     }
 
