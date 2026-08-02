@@ -827,11 +827,27 @@ h1{
 
 .heart-secret{
 
-    opacity:.12;
+    position:absolute;
 
-    animation:
+    left:26px;
 
-        heartBreath 5s ease-in-out infinite;
+    bottom:22px;
+
+    z-index:20;
+
+    font-size:22px;
+
+    color:rgba(214,40,57,.75);
+
+    cursor:pointer;
+
+    transition:
+
+        color .45s,
+
+        transform .45s,
+
+        text-shadow .45s;
 
 }
 
@@ -1374,15 +1390,15 @@ h1{
 
     }
 
-    .heart-secret {
+    .heart-secret{
 
         left:50%;
 
         bottom:18px;
 
-        transform:translateX(-50%);
+        z-index:20;
 
-        font-size:2rem;
+        transform:translateX(-50%);
 
     }
 
