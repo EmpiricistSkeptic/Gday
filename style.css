@@ -1,0 +1,1290 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#050505;
+
+    --bg-2:#0b0607;
+
+    --bg-3:#17080b;
+
+    --red:#d62839;
+
+    --red-soft:#8a1225;
+
+    --gold:#f4e7d4;
+
+    --text:#f8f6f3;
+
+    --text-soft:#d7d2ce;
+
+}
+
+html{
+
+    font-size:16px;
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:"Cormorant Garamond",serif;
+
+    position:relative;
+
+}
+
+
+
+/* ==========================================================
+   BACKGROUND
+========================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-5;
+
+    background:
+
+        radial-gradient(
+            circle at 50% -15%,
+            rgba(160,20,35,.28),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(90,8,18,.24),
+            transparent 46%
+        ),
+
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(120,10,20,.18),
+            transparent 46%
+        ),
+
+        linear-gradient(
+            180deg,
+
+            #140608,
+
+            #070707 40%,
+
+            #020202
+        );
+
+}
+
+
+
+/* ==========================================================
+   FILM NOISE
+========================================================== */
+
+.noise{
+
+    position:absolute;
+
+    inset:-50%;
+
+    opacity:.035;
+
+    mix-blend-mode:screen;
+
+    background-image:
+
+        radial-gradient(circle,#ffffff 1px,transparent 1px);
+
+    background-size:4px 4px;
+
+    animation:noiseMove 14s linear infinite;
+
+}
+
+@keyframes noiseMove{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(180px,120px);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   FOG
+========================================================== */
+
+.fog{
+
+    position:absolute;
+
+    width:70vw;
+
+    height:70vw;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.15;
+
+}
+
+.fog-1{
+
+    background:#8a1225;
+
+    top:-15%;
+
+    left:-10%;
+
+    animation:fogOne 26s ease-in-out infinite alternate;
+
+}
+
+.fog-2{
+
+    background:#5a0814;
+
+    right:-15%;
+
+    bottom:-15%;
+
+    animation:fogTwo 32s ease-in-out infinite alternate;
+
+}
+
+.fog-3{
+
+    background:#d62839;
+
+    left:40%;
+
+    top:45%;
+
+    opacity:.08;
+
+    animation:fogThree 40s ease-in-out infinite alternate;
+
+}
+
+
+
+@keyframes fogOne{
+
+    from{
+
+        transform:
+
+            translate(0,0)
+
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+
+            translate(120px,-40px)
+
+            scale(1.18);
+
+    }
+
+}
+
+
+
+@keyframes fogTwo{
+
+    from{
+
+        transform:
+
+            translate(0,0)
+
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+
+            translate(-140px,60px)
+
+            scale(1.22);
+
+    }
+
+}
+
+
+
+@keyframes fogThree{
+
+    from{
+
+        transform:
+
+            rotate(0deg)
+
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+
+            rotate(12deg)
+
+            scale(1.35);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   DARK VIGNETTE
+========================================================== */
+
+.background::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            transparent 48%,
+
+            rgba(0,0,0,.72) 100%
+
+        );
+
+}
+
+
+
+/* ==========================================================
+   PARTICLES
+========================================================== */
+
+#particles,
+
+#petals{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero{
+
+    width:100vw;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.card{
+
+    position:relative;
+
+    width:min(760px,92vw);
+
+    padding:70px 60px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18,10,11,.92),
+            rgba(10,8,9,.97)
+        );
+
+    border:1px solid rgba(214,40,57,.22);
+
+    box-shadow:
+
+        0 35px 90px rgba(0,0,0,.55),
+
+        0 0 45px rgba(214,40,57,.08),
+
+        inset 0 1px rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
+
+    animation:cardAppear 2s ease forwards;
+
+}
+
+
+/* ==========================================================
+   SOFT GLOW
+========================================================== */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:inherit;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(214,40,57,.14),
+            transparent 55%
+        ),
+
+        radial-gradient(
+            circle at bottom,
+            rgba(214,40,57,.08),
+            transparent 70%
+        );
+
+}
+
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:14px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.035);
+
+    pointer-events:none;
+
+}
+
+
+
+/* ==========================================================
+   DATE
+========================================================== */
+
+.date{
+
+    display:block;
+
+    margin-bottom:18px;
+
+    color:var(--text-soft);
+
+    font-size:.95rem;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+
+    opacity:.75;
+
+}
+
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+h1{
+
+    font-family:"Great Vibes",cursive;
+
+    font-weight:400;
+
+    font-size:5.3rem;
+
+    line-height:.95;
+
+    color:white;
+
+    text-shadow:
+
+        0 0 14px rgba(214,40,57,.25),
+
+        0 0 45px rgba(214,40,57,.18);
+
+}
+
+
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.divider{
+
+    width:160px;
+
+    height:1px;
+
+    margin:38px auto;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(214,40,57,.85),
+
+            transparent
+
+        );
+
+}
+
+
+
+/* ==========================================================
+   LETTER
+========================================================== */
+
+.letter{
+
+    max-width:560px;
+
+    margin:auto;
+
+    font-size:1.55rem;
+
+    line-height:1.85;
+
+    color:var(--text-soft);
+
+    font-weight:300;
+
+}
+
+
+
+/* ==========================================================
+   SECRET HEART
+========================================================== */
+
+.heart-secret{
+
+    position:absolute;
+
+    left:26px;
+
+    bottom:22px;
+
+    font-size:22px;
+
+    color:rgba(214,40,57,.22);
+
+    cursor:pointer;
+
+    transition:
+
+        color .45s,
+
+        transform .45s,
+
+        text-shadow .45s;
+
+}
+
+.card:hover .heart-secret{
+
+    color:rgba(214,40,57,.75);
+
+    text-shadow:
+
+        0 0 12px rgba(214,40,57,.5),
+
+        0 0 28px rgba(214,40,57,.35);
+
+}
+
+.heart-secret:hover{
+
+    transform:scale(1.35);
+
+}
+
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes cardAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(40px)
+
+            scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0)
+
+            scale(1);
+
+    }
+
+}
+
+/* ==========================================================
+   CINEMATIC ANIMATIONS
+========================================================== */
+
+.card{
+
+    animation:
+
+        cardAppear 2s ease forwards,
+
+        breathing 7s ease-in-out infinite;
+
+}
+
+@keyframes breathing{
+
+    0%{
+
+        box-shadow:
+
+            0 30px 90px rgba(0,0,0,.55),
+
+            0 0 30px rgba(214,40,57,.05);
+
+    }
+
+    50%{
+
+        box-shadow:
+
+            0 40px 110px rgba(0,0,0,.65),
+
+            0 0 70px rgba(214,40,57,.14);
+
+    }
+
+    100%{
+
+        box-shadow:
+
+            0 30px 90px rgba(0,0,0,.55),
+
+            0 0 30px rgba(214,40,57,.05);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   TITLE APPEAR
+========================================================== */
+
+.date{
+
+    opacity:0;
+
+    animation:
+
+        fadeUp 1s ease .4s forwards;
+
+}
+
+h1{
+
+    opacity:0;
+
+    animation:
+
+        fadeUp 1.2s ease .9s forwards;
+
+}
+
+.divider{
+
+    opacity:0;
+
+    transform:scaleX(.2);
+
+    animation:
+
+        dividerAppear 1s ease 1.6s forwards;
+
+}
+
+.letter{
+
+    opacity:0;
+
+    animation:
+
+        fadeUp 1.3s ease 2.1s forwards;
+
+}
+
+
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateY(0);
+
+    }
+
+}
+
+
+
+@keyframes dividerAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:scaleX(.2);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scaleX(1);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   LIGHT PASS
+========================================================== */
+
+.card::before{
+
+    animation:
+
+        lightSweep 9s linear infinite;
+
+}
+
+@keyframes lightSweep{
+
+    0%{
+
+        transform:
+
+            translateX(-25px);
+
+        opacity:.45;
+
+    }
+
+    50%{
+
+        transform:
+
+            translateX(25px);
+
+        opacity:.9;
+
+    }
+
+    100%{
+
+        transform:
+
+            translateX(-25px);
+
+        opacity:.45;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   SECRET HEART
+========================================================== */
+
+.heart-secret{
+
+    opacity:.12;
+
+    animation:
+
+        heartBreath 5s ease-in-out infinite;
+
+}
+
+
+
+.card:hover .heart-secret{
+
+    opacity:.9;
+
+}
+
+
+
+@keyframes heartBreath{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.18);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   MODAL
+========================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:500;
+
+    transition:.5s;
+
+}
+
+
+
+.modal.hidden{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+
+
+.modal-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(12px);
+
+}
+
+
+
+/* ==========================================================
+   LETTER PAPER
+========================================================== */
+
+.paper{
+
+    position:relative;
+
+    width:min(760px,92vw);
+
+    max-height:82vh;
+
+    overflow:auto;
+
+    padding:60px;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(24,14,15,.98),
+
+            rgba(12,8,8,.99)
+
+        );
+
+    border:1px solid rgba(214,40,57,.18);
+
+    box-shadow:
+
+        0 40px 100px rgba(0,0,0,.6),
+
+        0 0 60px rgba(214,40,57,.08);
+
+    animation:
+
+        paperAppear .65s ease;
+
+}
+
+
+
+@keyframes paperAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            scale(.95)
+
+            translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            scale(1)
+
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   MODAL TITLE
+========================================================== */
+
+.paper h2{
+
+    text-align:center;
+
+    font-family:"Great Vibes",cursive;
+
+    font-size:4rem;
+
+    font-weight:400;
+
+    margin-bottom:15px;
+
+    color:white;
+
+}
+
+
+
+.paper-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    margin-top:25px;
+
+}
+
+
+
+.paper-content p{
+
+    color:var(--text-soft);
+
+    font-size:1.45rem;
+
+    line-height:1.9;
+
+}
+
+
+
+/* ==========================================================
+   CLOSE
+========================================================== */
+
+.close{
+
+    position:absolute;
+
+    top:20px;
+
+    right:24px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:2rem;
+
+    transition:.35s;
+
+}
+
+
+
+.close:hover{
+
+    transform:rotate(90deg);
+
+    color:var(--red);
+
+}
+
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.paper::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.paper::-webkit-scrollbar-thumb{
+
+    background:rgba(214,40,57,.4);
+
+    border-radius:20px;
+
+}
+
+.paper::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+/* ==========================================================
+   ROSE PETAL
+========================================================== */
+
+.rose-petal{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    border-radius:
+
+        60% 40%
+
+        65% 35%
+
+        55% 45%
+
+        45% 55%;
+
+    background:
+
+        radial-gradient(
+
+            circle at 30% 30%,
+
+            #ff7b8e,
+
+            #d62839 45%,
+
+            #85101e 100%
+
+        );
+
+    box-shadow:
+
+        inset -2px -3px 4px rgba(70,0,0,.25),
+
+        0 0 10px rgba(214,40,57,.18);
+
+    pointer-events:none;
+
+    will-change:transform;
+
+}
+
+/* ==========================================================
+   FIREFLY
+========================================================== */
+
+.firefly{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,255,255,.95),
+
+            rgba(214,40,57,.85) 45%,
+
+            rgba(214,40,57,0) 100%
+
+        );
+
+    filter:blur(1px);
+
+    box-shadow:
+
+        0 0 10px rgba(214,40,57,.55),
+
+        0 0 25px rgba(214,40,57,.25);
+
+    pointer-events:none;
+
+    will-change:transform;
+
+}
+
+/* ==========================================================
+   SECRET LETTER
+========================================================== */
+
+.secret-letter{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transition:
+
+        max-height .9s ease,
+
+        opacity .8s ease,
+
+        margin-top .8s ease;
+
+}
+
+.card.open .secret-letter{
+
+    max-height:900px;
+
+    overflow-y:auto;
+
+    opacity:1;
+
+    margin-top:45px;
+
+}
+
+.secret-divider{
+
+    width:120px;
+
+    height:1px;
+
+    margin:0 auto 35px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(214,40,57,.8),
+
+            transparent
+
+        );
+
+}
+
+.secret-letter p{
+
+    font-size:1.45rem;
+
+    line-height:1.9;
+
+    color:var(--text-soft);
+
+    margin-bottom:24px;
+
+}
+
+.signature{
+
+    margin-top:50px;
+
+    text-align:right;
+
+    font-size:1.6rem;
+
+    color:white;
+
+}
+
+.signature span{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-family:"Great Vibes",cursive;
+
+    font-size:2.6rem;
+
+    color:var(--red);
+
+}
